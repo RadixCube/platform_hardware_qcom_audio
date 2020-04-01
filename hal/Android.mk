@@ -6,64 +6,64 @@ include $(CLEAR_VARS)
 
 LOCAL_ARM_MODE := arm
 
-AUDIO_PLATFORM := $(TARGET_BOARD_PLATFORM)
+AUDIO_PLATFORM := $(PRODUCT_BOARD_PLATFORM)
 
-ifneq ($(filter msm8974 msm8226 msm8610 apq8084 msm8994 msm8992 msm8996 msm8998 apq8098_latv sdm845 sdm710 qcs605 msmnile $(MSMSTEPPE) $(TRINKET) kona,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8974 msm8226 msm8610 apq8084 msm8994 msm8992 msm8996 msm8998 apq8098_latv sdm845 sdm710 qcs605 msmnile $(MSMSTEPPE) $(TRINKET) kona,$(PRODUCT_BOARD_PLATFORM)),)
   # B-family platform uses msm8974 code base
   AUDIO_PLATFORM = msm8974
   MULTIPLE_HW_VARIANTS_ENABLED := true
-ifneq ($(filter msm8610,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8610,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8610
 endif
-ifneq ($(filter msm8226,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8226,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8x26
 endif
-ifneq ($(filter apq8084,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter apq8084,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_APQ8084
 endif
-ifneq ($(filter msm8994,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8994,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8994
 endif
-ifneq ($(filter msm8992,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8992,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8994
 endif
-ifneq ($(filter msm8996,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8996,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8996
 endif
-ifneq ($(filter msm8998 apq8098_latv,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8998 apq8098_latv,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8998
 endif
-ifneq ($(filter sdm845,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter sdm845,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_SDM845
 endif
-ifneq ($(filter sdm710,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter sdm710,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_SDM710
 endif
-ifneq ($(filter qcs605,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter qcs605,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_QCS605
 endif
-ifneq ($(filter msmnile,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msmnile,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSMNILE
 endif
-ifneq ($(filter $(MSMSTEPPE) ,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter $(MSMSTEPPE) ,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSMSTEPPE
 endif
-ifneq ($(filter $(TRINKET) ,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter $(TRINKET) ,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_TRINKET
 endif
-ifneq ($(filter kona,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter kona,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_KONA
 endif
 endif
 
-ifneq ($(filter msm8916 msm8909 msm8952 msm8937 thorium msm8953 msmgold sdm660,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8916 msm8909 msm8952 msm8937 thorium msm8953 msmgold sdm660,$(PRODUCT_BOARD_PLATFORM)),)
   AUDIO_PLATFORM = msm8916
   MULTIPLE_HW_VARIANTS_ENABLED := true
   LOCAL_CFLAGS := -DPLATFORM_MSM8916
-ifneq ($(filter msm8909,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8909,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSM8909
 endif
-ifneq ($(filter sdm660,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter sdm660,$(PRODUCT_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_MSMFALCON
 endif
 endif
@@ -394,7 +394,7 @@ endif
 
 ifeq ($(ST_FEATURE_ENABLE), true)
     LOCAL_CFLAGS += -DSOUND_TRIGGER_ENABLED
-    LOCAL_CFLAGS += -DSOUND_TRIGGER_PLATFORM_NAME=$(TARGET_BOARD_PLATFORM)
+    LOCAL_CFLAGS += -DSOUND_TRIGGER_PLATFORM_NAME=$(PRODUCT_BOARD_PLATFORM)
     LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/mm-audio/sound_trigger
     LOCAL_SRC_FILES += audio_extn/soundtrigger.c
 endif
@@ -493,7 +493,7 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_A2DP_DECODERS)), true)
     LOCAL_CFLAGS += -DAPTX_DECODER_ENABLED
 endif
 
-LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE := audio.primary.$(PRODUCT_BOARD_PLATFORM)
 
 LOCAL_MODULE_RELATIVE_PATH := hw
 
